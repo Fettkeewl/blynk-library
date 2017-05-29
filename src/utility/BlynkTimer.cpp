@@ -168,6 +168,16 @@ int SimpleTimer::setInterval(long d, timer_callback f) {
     return setTimer(d, f, RUN_FOREVER);
 }
 
+bool SimpleTimer::changeInterval(int timerId, long d) {
+    // Updates interval of existing specified timer
+    if (callbacks[timerId] != 0) {
+        delays[timerId] = d;
+        prev_millis[timerId] = elapsed();
+        return true;
+    }
+    // false return for non-used timerId, no callback
+    return false;
+}
 
 int SimpleTimer::setTimeout(long d, timer_callback f) {
     return setTimer(d, f, RUN_ONCE);
@@ -226,6 +236,14 @@ void SimpleTimer::enable(int numTimer) {
     enabled[numTimer] = true;
 }
 
+void SimpleTimer::enableAll() {
+    // Enable all timers with a callback assigned (used)
+    for (i = 0; i < MAX_TIMERS; i++) {
+        if (callbacks[i] != 0) {
+            enabled[i] = true;
+        }
+    }    
+}
 
 void SimpleTimer::disable(int numTimer) {
     if (numTimer >= MAX_TIMERS) {
@@ -235,6 +253,14 @@ void SimpleTimer::disable(int numTimer) {
     enabled[numTimer] = false;
 }
 
+void SimpleTimer::disableAll() {
+    // Disable all timers with a callback assigned (used)
+    for (i = 0; i < MAX_TIMERS; i++) {
+        if (callbacks[i] != 0) {
+            enabled[i] = false;
+        }
+    }    
+}
 
 void SimpleTimer::toggle(int numTimer) {
     if (numTimer >= MAX_TIMERS) {
