@@ -13,6 +13,7 @@ WidgetMap	KEYWORD1
 WidgetTable	KEYWORD1
 BlynkParam	KEYWORD1
 BlynkParamAllocated	KEYWORD1
+BlynkSimpleEsp8266	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -31,6 +32,11 @@ syncAll	KEYWORD2
 syncVirtual	KEYWORD2
 setProperty	KEYWORD2
 logEvent	KEYWORD2
+asInt	KEYWORD2
+asFloat KEYWORD2
+asDouble	KEYWORD2
+asStr	KEYWORD2
+asString	KEYWORD2
 
 # Handler helpers
 BLYNK_READ	KEYWORD2
